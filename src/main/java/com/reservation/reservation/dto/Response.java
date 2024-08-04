@@ -1,6 +1,7 @@
 package com.reservation.reservation.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.reservation.reservation.entity.Review;
 import lombok.Data;
 
 import java.util.List;
@@ -23,4 +24,7 @@ public class Response {
     private List<UserDTO> userList;
     private List<LabDTO> labList;
     private List<ReservingDTO> reservingList;
+
+    private List<Review> reviewList;
+    private Review review;
 }
