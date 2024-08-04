@@ -23,6 +23,4 @@ public class Response {
     private List<UserDTO> userList;
     private List<LabDTO> labList;
     private List<ReservingDTO> reservingList;
-    private ReviewDTO review;
-    private List<ReviewDTO> reviewList;
 }

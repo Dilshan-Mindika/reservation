@@ -2,11 +2,9 @@ package com.reservation.reservation.utils;
 
 import com.reservation.reservation.dto.ReservingDTO;
 import com.reservation.reservation.dto.LabDTO;
-import com.reservation.reservation.dto.ReviewDTO;
 import com.reservation.reservation.dto.UserDTO;
 import com.reservation.reservation.entity.Reserving;
 import com.reservation.reservation.entity.Lab;
-import com.reservation.reservation.entity.Review;
 import com.reservation.reservation.entity.User;
 
 import java.security.SecureRandom;
@@ -118,16 +116,6 @@ public class Utils {
         return userDTO;
     }
 
-    public static ReviewDTO mapReviewEntityToReviewDTO(Review review) {
-        ReviewDTO reviewDTO = new ReviewDTO();
-        reviewDTO.setId(review.getId());
-        reviewDTO.setComment(review.getComment());
-        reviewDTO.setRating(review.getRating());
-        reviewDTO.setUser(mapUserEntityToUserDTO(review.getUser()));
-        reviewDTO.setLab(mapLabEntityToLabDTO(review.getLab()));
-        return reviewDTO;
-    }
-
     public static User mapUserDTOToUserEntity(UserDTO userDTO) {
         User user = new User();
         user.setId(userDTO.getId());
@@ -148,14 +136,6 @@ public class Utils {
         return lab;
     }
 
-    public static Review mapReviewDTOToReviewEntity(ReviewDTO reviewDTO) {
-        Review review = new Review();
-        review.setComment(reviewDTO.getComment());
-        review.setRating(reviewDTO.getRating());
-        review.setUser(mapUserDTOToUserEntity(reviewDTO.getUser()));
-        review.setLab(mapLabDTOToLabEntity(reviewDTO.getLab()));
-        return review;
-    }
 
 
     public static List<UserDTO> mapUserListEntityToUserListDTO(List<User> userList) {
@@ -168,12 +148,6 @@ public class Utils {
 
     public static List<ReservingDTO> mapReservingListEntityToReservingListDTO(List<Reserving> reservingList) {
         return reservingList.stream().map(Utils::mapReservingEntityToReservingDTO).collect(Collectors.toList());
-    }
-
-    public static List<ReviewDTO> mapReviewListEntityToReviewListDTO(List<Review> reviewList) {
-        return reviewList.stream()
-                .map(Utils::mapReviewEntityToReviewDTO)
-                .collect(Collectors.toList());
     }
 
 }
