@@ -4,9 +4,11 @@ import com.reservation.reservation.dto.Response;
 import com.reservation.reservation.entity.Lab;
 import com.reservation.reservation.entity.Review;
 import com.reservation.reservation.entity.User;
+import com.reservation.reservation.exception.OurException;
 import com.reservation.reservation.repo.LabRepository;
 import com.reservation.reservation.repo.ReviewRepository;
 import com.reservation.reservation.repo.UserRepository;
+import com.reservation.reservation.service.interfac.IReservingService;
 import com.reservation.reservation.service.interfac.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,39 @@ public class ReviewService implements IReviewService {
     private UserRepository userRepository;
 
     @Autowired
+    private IReservingService reviewService;
+
+    @Autowired
     private LabRepository labRepository;
+
+    @Override
+    public Response saveReviews(Long labId, Long userId, Review review) {
+
+        Response response = new Response();
+
+        try {
+
+            Lab lab = labRepository.findById(labId).orElseThrow(() -> new OurException("Lab Not Found"));
+            User user = userRepository.findById(userId).orElseThrow(() -> new OurException("User Not Found"));
+
+            review.setLab(lab);
+            review.setUser(user);
+            reviewRepository.save(review);
+
+            response.setStatusCode(200);
+            response.setMessage("Review saved successfully");
+
+        } catch (OurException e) {
+            response.setStatusCode(404);
+            response.setMessage(e.getMessage());
+
+        } catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("Error saving the review: " + e.getMessage());
+        }
+        return response;
+    }
+
 
     @Override
     public Response getAllReviews() {

@@ -5,6 +5,8 @@ import com.reservation.reservation.entity.Review;
 
 public interface IReviewService {
 
+    Response saveReviews(Long labId, Long userId, Review review);
+
     Response getAllReviews();
     Response getReviewById(Long id);
     Response createReview(Long labId, Long userId, Review review);
