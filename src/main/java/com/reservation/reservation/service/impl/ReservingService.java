@@ -143,6 +143,7 @@ public class ReservingService implements IReservingService {
 
     private boolean labIsAvailable(Reserving reservingRequest, List<Reserving> existingReservings) {
         LocalTime requestedCheckInTime = reservingRequest.getCheckInTime();
+        LocalTime requestedCheckOutTime = reservingRequest.getCheckOutTime();
         LocalDate requestedCheckInDate = reservingRequest.getCheckInDate();
 
         for (Reserving existingReserving : existingReservings) {

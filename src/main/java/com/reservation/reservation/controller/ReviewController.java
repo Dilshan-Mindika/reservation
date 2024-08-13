@@ -1,7 +1,6 @@
 package com.reservation.reservation.controller;
 
 import com.reservation.reservation.dto.Response;
-import com.reservation.reservation.entity.Reserving;
 import com.reservation.reservation.entity.Review;
 import com.reservation.reservation.service.impl.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
