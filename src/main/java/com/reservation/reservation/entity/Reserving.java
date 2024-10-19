@@ -20,6 +20,7 @@ public class Reserving {
     private long id;
 
     @NotNull(message = "check in date is required")
+    @Future
     private LocalDate checkInDate;
 
     @Future(message = "check in time is required")
